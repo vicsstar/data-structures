@@ -21,7 +21,7 @@ class DynamicArray<T> implements Iterable<T> {
   }
 
   public boolean isEmpty() {
-    return size() == 0;
+    return length == 0;
   }
 
   public void add(T item) {
@@ -30,7 +30,7 @@ class DynamicArray<T> implements Iterable<T> {
       capacity = capacity * 2;
       T[] arrCopy = (T[]) new Object[capacity];
 
-      for (int i = 0; i < size(); i++)
+      for (int i = 0; i < length; i++)
         arrCopy[i] = arr[i];
 
       arr = arrCopy;
@@ -50,7 +50,7 @@ class DynamicArray<T> implements Iterable<T> {
     T[] newArray = (T[]) new Object[capacity];
     T itemAtIndex = null;
 
-    for (int i = 0, j = 0; i < size(); i++, j++) {
+    for (int i = 0, j = 0; i < length; i++, j++) {
       if (i == index) {
         j--;
         itemAtIndex = arr[i];
@@ -64,7 +64,7 @@ class DynamicArray<T> implements Iterable<T> {
   }
 
   public int indexOf(T item) {
-    for (int i = 0; i < size(); i++) {
+    for (int i = 0; i < length; i++) {
       if (item == null) {
         if (arr[i] == null) return i;
       } else if (item.equals(arr[i])) {
@@ -93,7 +93,7 @@ class DynamicArray<T> implements Iterable<T> {
   }
 
   public void set(T item, int index) {
-    if (index >= size() || index < 0) {
+    if (index >= length || index < 0) {
       throw new ArrayIndexOutOfBoundsException(index);
     }
     arr[index] = item;
@@ -111,5 +111,18 @@ class DynamicArray<T> implements Iterable<T> {
         return arr[index++];
       }
     };
+  }
+
+  public String toString() {
+    if (length == 0) return "[]";
+
+    java.util.Iterator<T> it = iterator();
+    final StringBuilder buffer = new StringBuilder();
+    buffer.append("[" + it.next());
+
+    while (it.hasNext()) {
+      buffer.append(", " + it.next());
+    }
+    return buffer.append("]").toString();
   }
 }
