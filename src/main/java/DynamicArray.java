@@ -110,6 +110,11 @@ class DynamicArray<T> implements Iterable<T> {
       public T next() {
         return arr[index++];
       }
+
+      @Override
+      public void remove() {
+        throw new IllegalStateException("Cannot remove from this iterator");
+      }
     };
   }
 
