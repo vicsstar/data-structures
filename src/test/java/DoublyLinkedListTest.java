@@ -26,6 +26,18 @@ public class DoublyLinkedListTest {
     }
 
     @Test
+    public void testIsEmpty() {
+        final DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+        list.add(1, 3, 5, 7, 9);
+
+        assertFalse(list::isEmpty);
+
+        list.clear();
+
+        assertTrue(list.isEmpty());
+    }
+
+    @Test
     public void testClear() {
         final DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
         list.add(2);
@@ -34,19 +46,9 @@ public class DoublyLinkedListTest {
 
         list.clear();
 
-        assertEquals(0, list.size());
-    }
-
-    @Test
-    public void testIsEmpty() {
-        final DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
-        list.add(1);
-
-        assertFalse(list::isEmpty);
-
-        list.clear();
-
         assertTrue(list.isEmpty());
+
+        assertEquals(0, list.size());
     }
 
     @Test

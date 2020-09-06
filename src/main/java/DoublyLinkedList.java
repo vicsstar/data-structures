@@ -59,15 +59,17 @@ class DoublyLinkedList<T> implements Iterable<T> {
   public void clear() {
     if (isEmpty()) return;
 
-    for (; head != null && head.isHead(); head = head.next) {
-      head.data = null;
-      head.prev = null;
+    Node<T> trav = head;
+
+    for (; trav != null; trav = trav.next) {
+      trav.data = null;
+      trav.prev = null;
     }
 
     if (tail != null) {
       tail.prev = null;
     }
-
+    head = tail = null;
     size = 0;
   }
 
