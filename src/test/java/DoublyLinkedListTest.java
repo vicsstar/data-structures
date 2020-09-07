@@ -1,10 +1,7 @@
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.function.Executable;
 import org.junit.platform.commons.annotation.Testable;
 
-import java.util.Iterator;
+import static org.junit.jupiter.api.Assertions.*;
 
 @Testable
 public class DoublyLinkedListTest {
@@ -187,5 +184,18 @@ public class DoublyLinkedListTest {
         for (Integer item : list) {
             assertEquals(item, list.getAt(index++));
         }
+    }
+
+    @Test
+    public void testToString() {
+        final DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+        list.add(5, 3, 7, 11, 9);
+
+        assertEquals("[5, 3, 7, 11, 9]", list.toString());
+
+        final DoublyLinkedList<String> strList = new DoublyLinkedList<>();
+        strList.add("Lorem", "Ipsum", "Dolor", "Met");
+
+        assertEquals("[Lorem, Ipsum, Dolor, Met]", strList.toString());
     }
 }

@@ -230,7 +230,7 @@ class DoublyLinkedList<T> implements Iterable<T> {
 
   public T getAt(int index) {
     assertListNotEmpty();
-    if (index < 0 || index > (size - 1)) throw new IndexOutOfBoundsException();
+    if (index < 0 || index > (size - 1)) throw new IndexOutOfBoundsException("Index out of bounds " + index);
 
     final boolean firstHalf = index < (size / 2);
 
@@ -253,14 +253,20 @@ class DoublyLinkedList<T> implements Iterable<T> {
   }
 
   private void assertListNotEmpty() {
-    if (isEmpty()) throw new IllegalStateException("Empty list");
+    if (isEmpty()) throw new IllegalStateException("List is empty");
   }
 
   @Override
   public String toString() {
-    return "DoublyLinkedList{" +
-            "head=" + head +
-            ", tail=" + tail +
-            '}';
+    if (isEmpty()) return "[]";
+
+    Node<T> trav = head;
+    final StringBuilder buffer = new StringBuilder("[" + trav.data);
+
+    while ((trav = trav.next) != null) {
+      buffer.append(", ").append(trav.data);
+    }
+    buffer.append("]");
+    return buffer.toString();
   }
 }
